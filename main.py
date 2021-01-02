@@ -1,3 +1,5 @@
+from sys import exit
+
 while True:
     data_size_type = input("Enter type of data size(GB, kb, Kb, Byte, bit...) :")
     transfer_rate_type = input("Enter type of data transfer rate(GBps, KBps, Mbps, Bps...) :")
@@ -19,13 +21,16 @@ while True:
     elif data_size_type == "Byte":
         data_size = data_size * 8
     elif data_size_type == "KB":
-        data_size = data_size * (2 ** 10) * 8
+        data_size = data_size * 8e3
     elif data_size_type == "MB":
-        data_size = data_size * (2 ** 20) * 8
+        data_size = data_size * 8e6
     elif data_size_type == "GB":
-        data_size = data_size * (2 ** 30) * 8
+        data_size = data_size * 8e9
     elif data_size_type == "TB":
-        data_size = data_size * (2 ** 40) * 8
+        data_size = data_size * 8e12
+    else:
+        print("FAIL: Usage error")
+        exit()
 
     # Convert to bits the transfer rate
     if transfer_rate_type == "bps":
@@ -41,13 +46,16 @@ while True:
     elif transfer_rate_type == "Bps":
         transfer_rate = transfer_rate * 8
     elif transfer_rate_type == "KBps":
-        transfer_rate = transfer_rate * 8 * 1e3
+        transfer_rate = transfer_rate * 8e3
     elif transfer_rate_type == "MBps":
-        transfer_rate = transfer_rate * 8 * 1e6
+        transfer_rate = transfer_rate * 8e6
     elif transfer_rate_type == "GBps":
-        transfer_rate = transfer_rate * 8 * 1e9
+        transfer_rate = transfer_rate * 8e9
     elif transfer_rate_type == "TBps":
-        transfer_rate = transfer_rate * 8 * 1e12
+        transfer_rate = transfer_rate * 8e12
+    else:
+        print("FAIL: Usage error")
+        exit()
 
     res = data_size/transfer_rate
     print(round(res, 2), " seconds", "\n")
